@@ -67,8 +67,8 @@ func generateSegment(a Point, b Point, depth int, box Box, result *[]Segment)  {
 func depthForZoonm(zoom float64) int {
 	depth:=int(math.Log(zoom)/math.Log(3))
 	depth+=2
-	if depth>8 {
-		depth=8
+	if depth>32 {
+		depth=32
 	} else if depth<1 {
 		depth=1
 	}
