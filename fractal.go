@@ -21,10 +21,14 @@ type Segment struct {
 }
 
 func segmentOutsideBox(a Point, b Point, box Box) bool {
-	segMinX := math.Min(a.X, b.X)
-	segMaxX := math.Max(a.X, b.X)
-	segMinY := math.Min(a.Y, b.Y)
-	segMaxY := math.Max(a.Y, b.Y)
+	dx := b.X - a.X
+	dy := b.Y - a.Y
+	pad := math.Sqrt(dx*dx+dy*dy) * 0.5
+
+	segMinX := math.Min(a.X, b.X) - pad
+	segMaxX := math.Max(a.X, b.X) + pad
+	segMinY := math.Min(a.Y, b.Y) - pad
+	segMaxY := math.Max(a.Y, b.Y) + pad
 
 	if segMaxX < box.MinX || segMinX > box.MaxX || segMaxY < box.MinY || segMinY > box.MaxY {
 		return true
@@ -67,8 +71,8 @@ func generateSegment(a Point, b Point, depth int, box Box, result *[]Segment)  {
 func depthForZoonm(zoom float64) int {
 	depth:=int(math.Log(zoom)/math.Log(3))
 	depth+=2
-	if depth>32 {
-		depth=32
+	if depth>50 {
+		depth=50
 	} else if depth<1 {
 		depth=1
 	}
