@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -74,5 +75,12 @@ func main(){
 	fmt.Println("fractals are cool")
  	http.HandleFunc("/snowflake",snowFlakeHandler)
 	http.Handle("/", http.FileServer(http.Dir(".")))
-    http.ListenAndServe(":8083",nil)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8083" // Default for local development
+	}
+
+    fmt.Println("Listening on port " + port)
+    http.ListenAndServe(":"+port, nil)
 }
