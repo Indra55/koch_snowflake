@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❄</text></svg>">
   <title>koch snowflake</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
@@ -267,7 +269,7 @@
       width: 110px;
       height: 28px;
       background: rgba(245, 245, 240, 0.8);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
       backdrop-filter: blur(4px);
       z-index: 3;
     }
@@ -427,18 +429,19 @@
   </div>
 
   <div id="panel">
-    <div class="kicker">A shape that never stops growing</div>
     <h1>So, what even is a fractal?</h1>
 
     <div class="panel-section">
       <h2>the short version</h2>
       <p>
-        A fractal is a shape that looks exactly the same no matter how far you zoom in. 
-        If you take a piece of it and blow it up, it's just the whole thing again but smaller. 
-        That's called <em>self-similarity</em> and it's the main trick. No matter how deep you go on the left, it keeps throwing the same spiky little triangles at you forever.
+        A fractal is a shape that looks exactly the same no matter how far you zoom in.
+        If you take a piece of it and blow it up, it's just the whole thing again but smaller.
+        That's called <em>self-similarity</em> and it's the main trick. No matter how deep you go on the left, it keeps
+        throwing the same spiky little triangles at you forever.
       </p>
       <p>
-        Unlike a circle that flattens into a line when you zoom in, fractals refuse to flatten out. They just keep throwing the same spiky details at you forever.
+        Unlike a circle that flattens into a line when you zoom in, fractals refuse to flatten out. They just keep
+        throwing the same spiky details at you forever.
       </p>
     </div>
 
@@ -450,7 +453,8 @@
     <div class="panel-section">
       <h2>the koch snowflake</h2>
       <p>
-        The rule is stupidly simple: Take a straight line, split it into three, and pop the middle third up into a triangular bump. Now you have 4 segments. Repeat forever.
+        The rule is stupidly simple: Take a straight line, split it into three, and pop the middle third up into a
+        triangular bump. Now you have 4 segments. Repeat forever.
       </p>
       <p>Do this to all three sides of a starting triangle, and you get the snowflake.</p>
     </div>
@@ -489,10 +493,9 @@
         This "fractal dimension" just measures how aggressively the shape fills space as you zoom.
       </p>
     </div>
+    <p>by hitanshu</p>
 
-    <div class="divider"></div>
-
-    <p class="nudge">scroll is over, go mess with the real thing, zoom way in and watch it never run out of detail</p>
+   
   </div>
 
   <script>
@@ -502,8 +505,8 @@
     const ctx = canvas.getContext('2d');
     const stage = document.getElementById('stage');
     // If opened directly from disk, hit local Go server. Otherwise, use relative path for Render/Server.
-    const backendURL = window.location.protocol === 'file:' 
-      ? 'http://localhost:8083/snowflake' 
+    const backendURL = window.location.protocol === 'file:'
+      ? 'http://localhost:8083/snowflake'
       : '/snowflake';
     const errEl = document.getElementById('err');
     const crosshairEl = document.getElementById('crosshair');
