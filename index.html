@@ -501,7 +501,9 @@
     const canvas = document.getElementById('c');
     const ctx = canvas.getContext('2d');
     const stage = document.getElementById('stage');
-    const backendURL = 'http://localhost:8083';
+    // For local go run main.go, use localhost, for Vercel, use serverless function
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const backendURL = isLocal ? 'http://localhost:8083/snowflake' : '/api/snowflake';
     const errEl = document.getElementById('err');
     const crosshairEl = document.getElementById('crosshair');
     const detailSlider = document.getElementById('detailSlider');
@@ -594,8 +596,6 @@
 
     // ---- data fetch ----
     async function fetchSnowflake() {
-      const base = backendURL.replace(/\/$/, '');
-
       let depthParam;
       if (detailMode === 'manual') {
         depthParam = manualDepth;
@@ -603,7 +603,7 @@
         depthParam = Math.min(6 + Math.max(0, Math.floor(Math.log(view.zoom) / Math.log(3))), 20);
       }
 
-      const url = `${base}/snowflake?zoom=${view.zoom}&centerX=${view.cx}&centerY=${view.cy}&depth=${depthParam}&screenW=${W}&screenH=${H}`;
+      const url = `${backendURL}?zoom=${view.zoom}&centerX=${view.cx}&centerY=${view.cy}&depth=${depthParam}&screenW=${W}&screenH=${H}`;
       const myToken = ++fetchToken;
       try {
         const res = await fetch(url);
