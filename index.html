@@ -243,25 +243,33 @@
       position: relative;
     }
 
-    #panel > *:not(.notes-bg) {
+    .scrapbook-wrapper {
       position: relative;
-      z-index: 1;
+      margin: 50px auto;
+      max-width: 85%;
+      transform: rotate(-1.5deg);
+      z-index: 2;
     }
 
-    .notes-bg {
-      position: sticky;
-      top: 0;
-      left: 0;
+    .scrapbook-wrapper img {
       width: 100%;
-      height: 100vh;
-      margin-bottom: -100vh;
-      background-image: url('notes.png');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.10;
-      mix-blend-mode: multiply;
-      pointer-events: none;
-      z-index: 0;
+      display: block;
+      border-radius: 3px;
+      box-shadow: 3px 8px 25px rgba(0, 0, 0, 0.15);
+      background: #fff;
+    }
+
+    .scrapbook-wrapper .tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(2deg);
+      width: 110px;
+      height: 28px;
+      background: rgba(245, 245, 240, 0.8);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      backdrop-filter: blur(4px);
+      z-index: 3;
     }
 
     #panel::-webkit-scrollbar {
@@ -419,7 +427,6 @@
   </div>
 
   <div id="panel">
-    <div class="notes-bg"></div>
     <div class="kicker">A shape that never stops growing</div>
     <h1>So, what even is a fractal?</h1>
 
@@ -431,50 +438,55 @@
         That's called <em>self-similarity</em> and it's the main trick. No matter how deep you go on the left, it keeps throwing the same spiky little triangles at you forever.
       </p>
       <p>
-        Most shapes you know don't do this. If you zoom into a circle enough it just becomes a straight line, which is pretty boring. Fractals refuse to flatten out. That's the whole point of them.
+        Unlike a circle that flattens into a line when you zoom in, fractals refuse to flatten out. They just keep throwing the same spiky details at you forever.
       </p>
+    </div>
+
+    <div class="scrapbook-wrapper">
+      <div class="tape"></div>
+      <img src="notes.png" alt="My fractal notes">
     </div>
 
     <div class="panel-section">
       <h2>the koch snowflake</h2>
       <p>
-        This one is from 1904, created by a Swedish mathematician named Helge von Koch. The rule is stupidly simple. Take a straight line, split it into three equal parts, and pop the middle third up into a little triangular bump. Now you've got 4 segments instead of 1. Do that to every single segment again and again. Forever.
+        The rule is stupidly simple: Take a straight line, split it into three, and pop the middle third up into a triangular bump. Now you have 4 segments. Repeat forever.
       </p>
-      <p>Start with a triangle instead of a line, do this on all three sides, and you get the snowflake.</p>
+      <p>Do this to all three sides of a starting triangle, and you get the snowflake.</p>
     </div>
 
     <div class="panel-section">
       <h2>here's the crazy part</h2>
       <p>
-        Every time you repeat the step, the perimeter gets <em>4/3 times longer</em> than it was.
+        Every time you repeat the step, the perimeter gets <em>4/3 times longer</em>. It literally grows to infinity.
       </p>
       <span class="eq">
         Pₙ = P₀ · (4/3)ⁿ
-        <span class="note">perimeter after n iterations goes to infinity</span>
+        <span class="note">perimeter goes to infinity</span>
       </span>
       <p>
-        So the outline of this shape actually has an infinite length. You could never walk all the way around it no matter how much time you had. But it still fits inside a finite area. The whole snowflake sits neatly inside a circle you could draw on paper.
+        But wait — it still fits neatly inside a finite area on your screen.
       </p>
       <span class="eq">
         A = (2√3⁄5) · s²
-        <span class="note">the area converges to a fixed finite number, it never escapes the page</span>
+        <span class="note">area converges to a fixed number</span>
       </span>
       <p>
-        Infinite perimeter, finite area. A shape with a border that never ends, wrapped around a space that actually does.
+        Infinite perimeter, finite area. A border that never ends, wrapped around a space that does.
       </p>
     </div>
 
     <div class="panel-section">
-      <h2>why 1.26 dimensions</h2>
+      <h2>1.26 dimensions?</h2>
       <p>
-        You'll sometimes see the Koch curve described as having a dimension of about 1.26. It's not a clean 1D line, and not quite a 2D shape either. It's stuck in between, and that's actually how fractal dimension gets defined.
+        It's not a clean 1D line, and not quite a solid 2D shape either. It's stuck in between.
       </p>
       <span class="eq">
         D = log(4) ⁄ log(3) ≈ 1.2619
-        <span class="note">4 self-similar copies, each scaled down by a factor of 3</span>
+        <span class="note">4 self-similar copies, scaled down by 3</span>
       </span>
       <p>
-        That number is basically a measure of how aggressively the shape fills space as you zoom. It's rougher and more space-filling than a line but never quite becomes a solid 2D area.
+        This "fractal dimension" just measures how aggressively the shape fills space as you zoom.
       </p>
     </div>
 
